@@ -1,4 +1,5 @@
 using UnityEngine;
+using Zenject;
 
 public class InvadersSpawner
 {
@@ -8,30 +9,37 @@ public class InvadersSpawner
 	private const float HorizontalOffset = 0.5f;
 	private const int InRowCount = 10;
 	private const int RowsCount = 3;
-	
+
 	private Invader.Factory _invadersFactory;
-	
-	public InvadersSpawner(Invader.Factory invadersFactory)
+	private DataModel _dataModel;
+
+	public InvadersSpawner(SignalBus signalBus, Invader.Factory invadersFactory, DataModel dataModel)
 	{
 		_invadersFactory = invadersFactory;
-		Spawn();
+		_dataModel = dataModel;
+
+		signalBus.Subscribe<RestartLevelSignal>(RespawnInvaders);
 	}
 
-	void Spawn()
+	private void RespawnInvaders()
 	{
 		var height = MaxHeight;
 		var widthStep = Width / InRowCount;
 		var leftPos = -Width / 2;
-		for(int i = 0 ; i < RowsCount; i++)
+		var count = 0;
+		for (int i = 0; i < RowsCount; i++)
 		{
 			for (int j = 0; j < InRowCount; j++)
 			{
 				var pos = new Vector3(HorizontalOffset + leftPos + widthStep * j, height, 0);
 				var invader = _invadersFactory.Create();
 				invader.transform.position = pos;
+				count++;
 			}
 
 			height -= RowHeight;
 		}
+
+		_dataModel.InvadersCount.Value = count;
 	}
 }
