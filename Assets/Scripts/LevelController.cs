@@ -1,5 +1,4 @@
-using System.Threading.Tasks;
-using UnityEngine;
+using Cysharp.Threading.Tasks;
 using Zenject;
 
 public class LevelController
@@ -22,8 +21,14 @@ public class LevelController
     {
         if (count == 0)
         {
-            RestartLevel();
+            UniTask.Run(RestartLevelDelayed);
         }
+    }
+
+    async void RestartLevelDelayed()
+    {
+        await UniTask.Delay(1000);
+        _signalBus.Fire<RestartLevelSignal>();
     }
 
     void RestartLevel()
