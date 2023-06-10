@@ -7,8 +7,16 @@ public class Projectile : MonoBehaviour
 {
     public Vector3 direction = Vector3.up;
     
+    protected SignalBus _signalBus;
+    
     [SerializeField] private float _speed = 20f;
     [SerializeField] private float _maxDistance = 6f;
+    
+    [Inject]
+    public void Construct(SignalBus signalBus)
+    {
+        _signalBus = signalBus;
+    }
     
     private void Update()
     {
@@ -20,9 +28,9 @@ public class Projectile : MonoBehaviour
         }
     }
 
-    private void CheckCollision(Collider2D other)
+    protected virtual void CheckCollision(Collider2D other)
     {
-        if (gameObject.CompareTag(Constants.EnemyTag))
+        if (gameObject.CompareTag(Constants.InvaderTag))
         {
             Debug.LogError("Collide enemy");
         }
@@ -44,9 +52,5 @@ public class Projectile : MonoBehaviour
     private void OnTriggerStay2D(Collider2D other)
     {
         CheckCollision(other);
-    }
-    
-    public class Factory : PlaceholderFactory<Projectile>
-    {
     }
 }
