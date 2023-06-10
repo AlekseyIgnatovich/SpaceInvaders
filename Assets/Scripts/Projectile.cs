@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class Projectile : MonoBehaviour
 {
@@ -43,5 +44,9 @@ public class Projectile : MonoBehaviour
     private void OnTriggerStay2D(Collider2D other)
     {
         CheckCollision(other);
+    }
+    
+    public class Factory : PlaceholderFactory<Projectile>
+    {
     }
 }
