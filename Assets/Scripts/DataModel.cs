@@ -9,6 +9,7 @@ public class DataModel
     [Inject]
     public void Construct(SignalBus signalBus)
     {
+        signalBus.Subscribe<RestartLevelSignal>(() => Score.Value = 0);
         signalBus.Subscribe<AmmoCollectedSignal>((s) => WeaponId = s.WeaponId);
         signalBus.Subscribe<InvaderKilledSignal>(() =>
         {
