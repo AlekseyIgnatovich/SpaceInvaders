@@ -1,4 +1,3 @@
-using UnityEngine;
 using Zenject;
 
 public class GameInstaller : MonoInstaller
@@ -16,6 +15,7 @@ public class GameInstaller : MonoInstaller
 		Container.BindInterfacesAndSelfTo<InvadersSpawner>().AsSingle().NonLazy();
 		Container.BindInterfacesAndSelfTo<AmmoSpawner>().AsSingle().NonLazy();
 		Container.BindInterfacesAndSelfTo<DataModel>().AsSingle();
+		Container.BindInterfacesAndSelfTo<DataModelController>().AsSingle().NonLazy();
 		Container.BindInterfacesAndSelfTo<LevelController>().AsSingle().NonLazy();
 	}
 }
