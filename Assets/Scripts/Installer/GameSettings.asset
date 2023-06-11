@@ -12,7 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 653ba9982d68b44afa79c10c2cc84a2a, type: 3}
   m_Name: GameSettings
   m_EditorClassIdentifier: 
-  GameSettings:
+  Settings:
     PlayerPrefab: {fileID: 6747547689241131898, guid: 3478618d5c50149b8ad4aa2cb39745b5, type: 3}
     InvaderPrefab: {fileID: 8280615954525438481, guid: 999664baa5cc845d591bea1c469fbcc9, type: 3}
-    ProjectilePrefab: {fileID: 7676815897619189426, guid: 2c492dad8bf0f40d1b92c74d6c70746c, type: 3}
+    weaponsSettings:
+      WeaponsData:
+      - Id: Weapon_0
+        Ammo: {fileID: 536246259602913361, guid: d8af5c5695e754757a495a58c5692095, type: 3}
+        Bullet: {fileID: 4571190079429297199, guid: 2c492dad8bf0f40d1b92c74d6c70746c, type: 3}
+      - Id: Weapon_1
+        Ammo: {fileID: 6153841522317968872, guid: 94ffde96fe6a544fa927df0b08f7ea5b, type: 3}
+        Bullet: {fileID: 8485787881752097445, guid: 4eaa08e8db8954d25be957b5add60347, type: 3}
+      - Id: Weapon_2
+        Ammo: {fileID: 4313916140423395763, guid: 03a350d92f6f244ba99ce8e5be9d2c5a, type: 3}
+        Bullet: {fileID: 711664807285656789, guid: 462f72c403f414fa19ff8c049fc66ace, type: 3}
+      - Id: Weapon_3
+        Ammo: {fileID: 4009471509000844685, guid: 54e75a471989d41f495ab4f58cf20013, type: 3}
+        Bullet: {fileID: 217109478653134486, guid: ad75e4968846e4e7da467252a9f9ef9c, type: 3}
