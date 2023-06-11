@@ -3,18 +3,20 @@ using Zenject;
 
 public class Projectile : MonoBehaviour
 {
-    public Vector3 direction = Vector3.up;
-
     protected SignalBus _signalBus;
 
+    private LevelBorders _levelBorders;
+
     [SerializeField] private float _speed = 20f;
-    [SerializeField] private float _maxDistance = 6f;
+    [SerializeField] private Vector3 _direction = Vector3.up;
 
     [Inject]
-    public void Construct(SignalBus signalBus)
+    public void Construct(SignalBus signalBus, LevelBorders levelBorders)
     {
         _signalBus = signalBus;
         _signalBus.Subscribe<RestartLevelSignal>(Kill);
+
+        _levelBorders = levelBorders;
     }
 
     void Kill()
@@ -24,18 +26,15 @@ public class Projectile : MonoBehaviour
 
     private void Update()
     {
-        transform.position += _speed * Time.deltaTime * direction;
+        transform.position += _speed * Time.deltaTime * _direction;
 
-        if (transform.position.y > _maxDistance || transform.position.y < -_maxDistance)
+        if (transform.position.y > _levelBorders.Height || transform.position.y < -_levelBorders.Height)
         {
             Destroy(gameObject);
         }
     }
 
-    protected virtual void CheckCollision(Collider2D other)
-    {
-
-    }
+    protected virtual void CheckCollision(Collider2D other) { }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
