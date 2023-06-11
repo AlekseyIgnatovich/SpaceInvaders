@@ -17,7 +17,7 @@ public class Ammo : Projectile
         {
 	        _signalBus.Fire(new AmmoCollectedSignal(Id));
 	        
-	        Destroy(gameObject);
+	        Kill();
         }
     }
 

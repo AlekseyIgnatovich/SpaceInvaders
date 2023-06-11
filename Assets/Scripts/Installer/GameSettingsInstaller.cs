@@ -2,7 +2,6 @@ using System;
 using UnityEngine;
 using Zenject;
 
-[CreateAssetMenu(fileName = "GameInstaller", menuName = "Installers/GameInstaller")]
 public class GameSettingsInstaller : ScriptableObjectInstaller<GameSettingsInstaller>
 {
     public GameSettings Settings;

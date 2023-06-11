@@ -28,7 +28,7 @@ public class LevelController
     async void RestartLevelDelayed()
     {
         await UniTask.Delay(1000);
-        _signalBus.Fire<RestartLevelSignal>();
+        RestartLevel();
     }
 
     void RestartLevel()

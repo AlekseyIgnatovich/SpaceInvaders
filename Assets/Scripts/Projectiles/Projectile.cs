@@ -19,7 +19,7 @@ public class Projectile : MonoBehaviour
         _levelBorders = levelBorders;
     }
 
-    void Kill()
+    protected void Kill()
     {
         Destroy(gameObject);
     }

@@ -13,7 +13,7 @@ public class Bullet : Projectile
             _signalBus.Fire(new InvaderKilledSignal(other.transform.position));
             
             Destroy(other.gameObject);
-            Destroy(gameObject);
+            Kill();
         }
     }
     
