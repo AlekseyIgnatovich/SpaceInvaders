@@ -1,7 +1,7 @@
 using UnityEngine;
 using Zenject;
 
-public abstract class ProjectileFactory<T> : PlaceholderFactory<T>
+public abstract class ProjectileFactory<T> : PlaceholderFactory<string,T>
 {
     protected readonly WeaponsSettings _settings;
 
@@ -15,7 +15,7 @@ public abstract class ProjectileFactory<T> : PlaceholderFactory<T>
         _settings = settings;
     }
 
-    public T Create(string id)
+    public override T Create(string id)
     {
         var projectile = _container.InstantiatePrefabForComponent<T>(GetPrefab(id));
         OnCreated(id, projectile);

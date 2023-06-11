@@ -16,8 +16,8 @@ public class GameSettingsInstaller : ScriptableObjectInstaller<GameSettingsInsta
         Container.BindFactory<Invader, Invader.Factory>()
             .FromComponentInNewPrefab(Settings.InvaderPrefab).AsSingle();
         
-        Container.BindFactory<Bullet, Bullet.Factory>().AsSingle();
-        Container.BindFactory<Ammo, Ammo.Factory>().AsSingle();
+        Container.BindFactory<string, Bullet,  Bullet.Factory>().AsSingle();
+        Container.BindFactory<string, Ammo, Ammo.Factory>().AsSingle();
     }
 }
 
