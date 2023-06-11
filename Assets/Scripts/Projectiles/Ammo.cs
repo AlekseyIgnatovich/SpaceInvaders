@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Zenject;
@@ -23,29 +21,18 @@ public class Ammo : Projectile
         }
     }
 
-    public class Factory : PlaceholderFactory<Ammo>
+    public class Factory : ProjectileFactory<Ammo>
     {
-	    readonly DiContainer _container;
-	    readonly WeaponsSettings _settings;
-
-	    public Factory(
-		    DiContainer container,
-		    WeaponsSettings settings)
+	    public Factory(DiContainer container, WeaponsSettings settings) : base(container, settings) { }
+	    
+	    protected override void OnCreated(string id, Ammo projectile)
 	    {
-		    _container = container;
-		    _settings = settings;
+		    projectile.Init(id);
 	    }
 
-	    public Ammo Create(string id)
+	    protected override GameObject GetPrefab(string id)
 	    {
-		    var  ammo = _container.InstantiatePrefabForComponent<Ammo>(GetPrefab(id));
-		    ammo.Init(id);// Todo: remove init
-		    return ammo;
-	    }
-
-	    GameObject GetPrefab(string id)
-	    {
-		    return _settings.WeaponsData.FirstOrDefault(w=> w.Id == id).Ammo;
+		    return _settings.WeaponsData.FirstOrDefault(w => w.Id == id).Ammo;
 	    }
     }
 }

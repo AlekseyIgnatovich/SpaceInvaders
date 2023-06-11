@@ -17,27 +17,14 @@ public class Bullet : Projectile
         }
     }
     
-    public class Factory : PlaceholderFactory<Bullet>//ToDo: copypaste
+    public class Factory : ProjectileFactory<Bullet>
     {
-        readonly DiContainer _container;
-        readonly WeaponsSettings _settings;
+        public Factory(DiContainer container, WeaponsSettings settings): base(container, settings) { }
 
-        public Factory(
-            DiContainer container,
-            WeaponsSettings settings)
-        {
-            _container = container;
-            _settings = settings;
-        }
-
-        public Bullet Create(string id)
-        {
-            return _container.InstantiatePrefabForComponent<Bullet>(GetPrefab(id));
-        }
-
-        GameObject GetPrefab(string id)
+        protected override  GameObject GetPrefab(string id)
         {
             return _settings.WeaponsData.FirstOrDefault(w=> w.Id == id).Bullet;
         }
     }
 }
+
